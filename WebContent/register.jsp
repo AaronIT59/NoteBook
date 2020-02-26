@@ -1,17 +1,19 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 
 <head>
-    <title>BMAGBOOK - Connect your world</title>
+    <title>NOTEBOOK - Connect your world</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="resources/font-awesome/css/font-awesome.min.css">
     
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <script src="js/jquery-2.2.4.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="resources/bootstrap/css/bootstrap.min.css">
+    <script src="resources/js/jquery-2.2.4.min.js"></script>
+    <script src="resources/bootstrap/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="resources/css/main.css">
 </head>
 
 <body>
@@ -19,18 +21,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-6">
-                    <a href="/" id="logo-large">BMAGBOOK</a>
+                    <a href="/" id="resources/logo-large">NOTEBOOK</a>
                 </div>
                 <div class="col-md-6">
-                    <form action="/" method="post" class="login-form-top">
+                    <form action="login" method="post" class="login-form-top">
                         <div class="login-form-input">
                             <label>Email or phone</label>
-                            <input type="text" name="user-login-id" />
+                            <input type="text" name="user" />
                         </div>
                         <div class="login-form-input">
                             <label>Password</label>
-                            <input type="password" name="user-login-password" />
-                            <button type="button" id="btn-login">Login</button>
+                            <input type="password" name="pass" />
+                            <button type="submit" id="btn-login">Login</button>
                             <a href="/">Forgotten password?</a>
                         </div>
                     </form>
@@ -44,12 +46,12 @@
             <div class="row">
                 <div class="col-md-6">
                     <h3>BMAGBOOK helps you connect and share with the people in your life.</h3>
-                    <img src="img/user-map.png">
+                    <img src="resources/img/user-map.png">
                 </div>
                 <div class="col-md-6">
                     <h3>Create an account</h3>
                     <p>It's free and always will be.</p>
-                    <form action="/" method="post" class="register-form">
+                    <form action="signIn" method="post" class="register-form">
                         <div class="reg-input-full-name">
                             <div class="reg-input" id="first-name">
                                 <input type="text" name="first-name" placeholder="First name">
@@ -89,13 +91,13 @@
                         </div>
                         <label style="display:block;">Birthday</label>
                         <div class="reg-input">
-                            <select id="days">
+                            <select name="dd" id="days">
                                 <option>Day</option>
                             </select>
-                            <select id="months">
+                            <select name="mm" id="months">
                                 <option>Month</option>
                             </select>
-                            <select id="years">
+                            <select name="yy" id="years">
                                 <option>Year</option>
                             </select>
                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
@@ -110,7 +112,7 @@
                         <p class="help-block">
                             By clicking Create an account, you agree to our Terms and that you have read our Data Policy, including our Cookie Use.
                         </p>
-                        <button type="button" id="reg-button">Create an account</button>
+                        <button type="submit" id="reg-button">Create an account</button>
                     </form>
                 </div>
             </div>
@@ -121,28 +123,28 @@
         <ul id="lans">
             <li>English (UK)</li>
             <li>
-                <a href="#">Tiếng việt</a>
+                <a href="#">Tiáº¿ng viá»t</a>
             </li>
             <li>
-                <a href="#">中文(台灣)</a>
+                <a href="#">ä¸­æ(å°ç£)</a>
             </li>
             <li>
-                <a href="#">한국어</a>
+                <a href="#">íêµ­ì´</a>
             </li>
             <li>
-                <a href="#">日本語</a>
+                <a href="#">æ¥æ¬èª</a>
             </li>
             <li>
-                <a href="#">Français (France)</a>
+                <a href="#">FranÃ§ais (France)</a>
             </li>
             <li>
-                <a href="#">ภาษาไทย</a>
+                <a href="#">à¸ à¸²à¸©à¸²à¹à¸à¸¢</a>
             </li>
             <li>
-                <a href="#">Español</a>
+                <a href="#">EspaÃ±ol</a>
             </li>
             <li>
-                <a href="#">Português (Brasil)</a>
+                <a href="#">PortuguÃªs (Brasil)</a>
             </li>
             <li>
                 <a href="#">Deutsch</a>
@@ -216,10 +218,10 @@
                 <a href="#">Games</a>
             </li>
         </ul>
-        BMAGBOOK &copy; 2016
+        NOTEBOOK &copy; 2020
     </footer>
 
-    <script src="./js/app.js"></script>
+    <script src="resources/js/app.js"></script>
     
     <script>
         $(function() {

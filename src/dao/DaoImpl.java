@@ -5,6 +5,8 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
+import entity.tbl_profile;
+
 public class DaoImpl implements DAO{
 	
 	public Connection ConnectDB() {
@@ -39,6 +41,29 @@ public class DaoImpl implements DAO{
 		} catch (Exception e) {
 			e.printStackTrace();
 		}		
+		return false;
+	}
+
+	@Override
+	public boolean SignIn(tbl_profile pro) {
+		
+		try {
+			Connection conn = ConnectDB();
+			PreparedStatement pst = conn.prepareStatement("insert into tbl_profile (first_name,last_name,email_mobile,password,birthday,sex) values (?,?,?,?,?,?) ");		
+			pst.setString(1, pro.getLast_name());
+			pst.setString(2, pro.getLast_name());
+			pst.setString(3, pro.getEmail_mobile());
+			pst.setString(4, pro.getPassword());
+			pst.setString(5, pro.getBirthday());
+			pst.setString(6, pro.getSex());	
+			pst.execute();
+			
+			return true;
+		
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 		return false;
 	}
 }
