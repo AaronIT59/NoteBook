@@ -1,59 +1,20 @@
 <!DOCTYPE html>
 <html>
 
-<head>
-    <title>BMAGBOOK - Connect your world</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
-
-    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
-    <script src="js/jquery-2.2.4.min.js"></script>
-    <script src="bootstrap/js/bootstrap.min.js"></script>
-
-    <link rel="stylesheet" href="css/main.css">
-</head>
+	<jsp:include page="WEB-INF/head_tag.jsp">
+			<jsp:param value="Profile" name="title"/>
+	</jsp:include>
 
 <body>
-    <nav class="container-fluid" id="main-nav-user-home">
-        <div class="row">
-            <div class="col-md-6" id="user-tools-left">
-                <a id="main-logo">B</a>
-                <div id="search-box">
-                    <input type="text" name="search-friend">
-                    <button><i class="fa fa-search"></i></button>
-                </div>
-            </div>
-            <div class="col-md-6" id="user-tools-right">
-                <ul>
-                    <li>
-                        <a href="/"><img src="img/avatar.jpg"> An</a>
-                    </li>
-                    <li><a href="/">Home <span>20+</span></a></li>
-                    <li>
-                        <a href="/"><i class="fa fa-users" aria-hidden="true"></i></a>
-                        <span class="mess-notif">9</span>
-                    </li>
-                    <li>
-                        <a href="/"><i class="fa fa-weixin" aria-hidden="true"></i></a>
-                        <span class="mess-notif">25</span>
-                    </li>
-                    <li>
-                        <a href="/"><i class="fa fa-globe" aria-hidden="true"></i></a>
-                        <span class="mess-notif">5</span>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+	<%@include file="WEB-INF/top_nav.jspf"%>
+   
     <section class="container-fluid" id="main-body">
         <div class="row no-pad">
             <div class="col-md-8 no-pad">
                 <div class="profile-header">
                     <div class="profile-header-top">
                         <span id="profile-button-add-cover"><i class="fa fa-camera" aria-hidden="true"></i> Add Cover Photo</span>
-                        <img src="img/profile.jpg">
+                        <img src="resources/img/profile.jpg">
                         <h3>Ngô Đăng Hà An</h3>
                         <a href="" id="profile-button-update-info">Update Info <span>1</span></a>
                         <a href="" id="profile-button-view-log">View Activity Log <span>5</span></a>
@@ -127,21 +88,21 @@
                 <div class="middle-right-ads">
                     <h4>Sponsored</h4>
                     <div class="ads-item">
-                        <img src="img/ad1.jpg">
+                        <img src="resources/img/ad1.jpg">
                         <a href="">ABC Banking</a>
                         <p>
                             ACB PRIVILEGE BANKING – TRỌN VẸN ĐẲNG CẤP Đồng hành cùng đẳng cấp và vị thế của bạn, phải...
                         </p>
                     </div>
                     <div class="ads-item">
-                        <img src="img/ad2.jpg">
+                        <img src="resources/img/ad2.jpg">
                         <a href="">ABC Banking</a>
                         <p>
                             ACB PRIVILEGE BANKING – TRỌN VẸN ĐẲNG CẤP Đồng hành cùng đẳng cấp và vị thế của bạn, phải...
                         </p>
                     </div>
                     <div class="ads-item">
-                        <img src="img/ad3.png">
+                        <img src="resources/img/ad3.png">
                         <a href="">ABC Banking</a>
                         <p>
                             ACB PRIVILEGE BANKING – TRỌN VẸN ĐẲNG CẤP Đồng hành cùng đẳng cấp và vị thế của bạn, phải...
@@ -153,107 +114,107 @@
                 <div id="online-list">
                     <ul>
                         <li>
-                            <img src="img/friend1.jpg">
+                            <img src="resources/img/friend1.jpg">
                             <span>Trung Hiếu</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/friend2.jpg">
+                            <img src="resources/img/friend2.jpg">
                             <span>Hồng Ngọc</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/friend3.jpg">
+                            <img src="resources/img/friend3.jpg">
                             <span>Ca Chua</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/avatar.jpg">
+                            <img src="resources/img/avatar.jpg">
                             <span>Hà An</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/user-comment1.jpg">
+                            <img src="resources/img/user-comment1.jpg">
                             <span>Hồng Ngọc</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/user_comment2.jpg">
+                            <img src="resources/img/user_comment2.jpg">
                             <span>Hải Sơn</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/user-comment3.jpg">
+                            <img src="resources/img/user-comment3.jpg">
                             <span>Hà Giang</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/friend1.jpg">
+                            <img src="resources/img/friend1.jpg">
                             <span>Trung Hiếu</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/friend2.jpg">
+                            <img src="resources/img/friend2.jpg">
                             <span>Hồng Ngọc</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/friend3.jpg">
+                            <img src="resources/img/friend3.jpg">
                             <span>Ca Chua</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/avatar.jpg">
+                            <img src="resources/img/avatar.jpg">
                             <span>Hà An</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/user-comment1.jpg">
+                            <img src="resources/img/user-comment1.jpg">
                             <span>Hồng Ngọc</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/user_comment2.jpg">
+                            <img src="resources/img/user_comment2.jpg">
                             <span>Hải Sơn</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/user-comment3.jpg">
+                            <img src="resources/img/user-comment3.jpg">
                             <span>Hà Giang</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/friend1.jpg">
+                            <img src="resources/img/friend1.jpg">
                             <span>Trung Hiếu</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/friend2.jpg">
+                            <img src="resources/img/friend2.jpg">
                             <span>Hồng Ngọc</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/friend3.jpg">
+                            <img src="resources/img/friend3.jpg">
                             <span>Ca Chua</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/avatar.jpg">
+                            <img src="resources/img/avatar.jpg">
                             <span>Hà An</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/user-comment1.jpg">
+                            <img src="resources/img/user-comment1.jpg">
                             <span>Hồng Ngọc</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/user_comment2.jpg">
+                            <img src="resources/img/user_comment2.jpg">
                             <span>Hải Sơn</span>
                             <span></span>
                         </li>
                         <li>
-                            <img src="img/user-comment3.jpg">
+                            <img src="resources/img/user-comment3.jpg">
                             <span>Hà Giang</span>
                             <span></span>
                         </li>
