@@ -1,3 +1,4 @@
+<%@page import="util.StringUtil"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
@@ -46,14 +47,16 @@
                     <form action="signIn" method="post" class="register-form">
                         <div class="reg-input-full-name">
                             <div class="reg-input" id="first-name">
-                                <input type="text" name="first-name" placeholder="First name">
+                                <input type="text" name="first-name" placeholder="First name"
+                                 value="<%= StringUtil.getString(request.getParameter("first-name")) %>" >
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                 <span class="error-popup">Input your first name
                                     <span></span><span></span>
                                 </span>
                             </div>
                             <div class="reg-input" id="last-name">
-                                <input type="text" name="last-name" placeholder="Last name">
+                                <input type="text" name="last-name" placeholder="Last name"
+                                value="<%= StringUtil.getString(request.getParameter("last-name")) %>" >
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                 <span class="error-popup">Input your last name
                                     <span></span><span></span>
@@ -61,7 +64,8 @@
                             </div>
                         </div>
                         <div class="reg-input" id="mobile-or-email">
-                            <input type="text" name="mobile-or-email" placeholder="Mobile phone or email address">
+                            <input type="text" name="mobile-or-email" placeholder="Mobile phone or email address"
+                            value="<%= StringUtil.getString(request.getParameter("mobile-or-email")) %>" >
                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                             <span class="error-popup">Input your email or phone
                                 <span></span><span></span>
@@ -83,11 +87,14 @@
                         </div>
                         <label style="display:block;">Birthday</label>
                         <div class="reg-input">
-                            <select name="dd" id="days">
+                            <select name="dd" id="days" >
+                              <option value="dd" >Day</option>
                             </select>
-                            <select name="mm" id="months">                                
+                            <select name="mm" id="months">   
+                              <option  value="mm">Month</option>                             
                             </select>
                             <select name="yy" id="years">
+                              <option value="yy">Year</option>
                             </select>
                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                             <span class="error-popup">Select your birthday
@@ -214,16 +221,22 @@
     
     <script>
         $(function() {
+        	var dd = "<%= StringUtil.getString(request.getParameter("dd")) %>";
+        	var mm = "<%= StringUtil.getString(request.getParameter("mm")) %>";
+        	var yy = "<%= StringUtil.getString(request.getParameter("yy")) %>";
             for (var i = 1; i <= 31; i++) {
-                $("#days").append("<option>" + i + "</option>");    
+            	if (i==dd) $("#days").append("<option selected>" + i + "</option>");
+                else $("#days").append("<option>" + i + "</option>");    
             }
             
             for (var i = 1; i <= 12; i++) {
-                $("#months").append("<option>" + i + "</option>");    
+            	if (i==mm) $("#months").append("<option selected>" + i + "</option>");
+            	else $("#months").append("<option>" + i + "</option>");    
             }
             
             for (var i = 2016; i >= 1905; i--) {
-                $("#years").append("<option>" + i + "</option>");    
+            	if (i==yy) $("#years").append("<option selected>" + i + "</option>");
+            	else $("#years").append("<option>" + i + "</option>");    
             }
         });
     </script>
