@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 
@@ -42,6 +42,7 @@
                 <div class="col-md-6">
                     <h3>Create an account</h3>
                     <p>It's free and always will be.</p>
+                    	<p style="color: red;">${status}</p>
                     <form action="signIn" method="post" class="register-form">
                         <div class="reg-input-full-name">
                             <div class="reg-input" id="first-name">
@@ -83,13 +84,10 @@
                         <label style="display:block;">Birthday</label>
                         <div class="reg-input">
                             <select name="dd" id="days">
-                                <option>Day</option>
                             </select>
-                            <select name="mm" id="months">
-                                <option>Month</option>
+                            <select name="mm" id="months">                                
                             </select>
                             <select name="yy" id="years">
-                                <option>Year</option>
                             </select>
                             <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                             <span class="error-popup">Select your birthday
@@ -97,7 +95,7 @@
                             </span>
                         </div>
                         <div class="reg-input">
-                            <input type="radio" name="sex" value="female"><label>Female</label>
+                            <input type="radio" name="sex" value="female" checked="true" ><label>Female</label>
                             <input type="radio" name="sex" value="male"><label>Male</label>
                         </div>
                         <p class="help-block">

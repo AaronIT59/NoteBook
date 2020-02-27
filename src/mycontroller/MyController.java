@@ -41,15 +41,27 @@ public class MyController {
 		tpro.setBirthday(request.getParameter("dd")+"-"+request.getParameter("mm")+"-"+request.getParameter("yy"));
 		tpro.setSex(request.getParameter("sex"));
 		
-		
-		if(new DaoImpl().SignIn(tpro))
-		{
-			mv.setViewName("index.jsp");
+		if(!new util.Validate().checkFirstName(tpro.getFirst_name())) {
+			mv.addObject("status", "First Name invalid");
+			mv.setViewName("register.jsp");
+		}else if(!new util.Validate().checkLastName(tpro.getLast_name())) {
+			mv.addObject("status", "Last Name invalid");
+			mv.setViewName("register.jsp");
+		}else if(!new util.Validate().checkEmailOrPhone(tpro.getEmail_mobile())) {
+			mv.addObject("status", "Email/Phone invalid");
+			mv.setViewName("register.jsp");
+		}else if(!new util.Validate().checkPass(tpro.getPassword())) {
+			mv.addObject("status", "Password invalid");
+			mv.setViewName("register.jsp");
 		}
 		
 		else {
-			mv.setViewName("register.jsp");
+			if(new DaoImpl().SignIn(tpro))
+			{
+				mv.setViewName("index.jsp");
+			}
 		}
+		
 		
 		return mv;
 		

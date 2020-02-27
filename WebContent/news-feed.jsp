@@ -118,7 +118,7 @@
                     </div>
                     <div class="user-post-body">
                         MÆ°a giÃ³ bÃ£o bÃ¹ng, lÃ m bÃ¡t phá» lÃ  áº¥m lÃ²ng. P/S: bÃ¡c sÄ© lÃ  ngÆ°á»i dÆ°ng, dáº¡ dÃ y má»i lÃ  ngÆ°á»i thÃ¢n. :v
-                        <img src="img/sample.jpg">
+                        <img src="resources/img/sample.jpg">
                     </div>
 
                     <div class="user-post-tool">
@@ -133,7 +133,7 @@
 
                     <div class="user-post-comment-list">
                         <div class="user-post-comment-item">
-                            <img src="img/user-comment1.jpg">
+                            <img src="resources/img/user-comment1.jpg">
                             <span>
                                 <a href="/">CÃ  Chua</a> Má»¡ ghÃª quÃ¡, Än cháº¯c Ã³i cháº¿t
                                 <div class="help-block">
@@ -206,7 +206,7 @@
                         <a href="#">See All</a>
                     </div>
                     <div class="friend-item">
-                        <img src="img/friend1.jpg">
+                        <img src="resources/img/friend1.jpg">
                         <span>
                                 <a href="#">Tráº§n XuÃ¢n KhÃ´i</a> 
                                 <span style="display:block;">123 mutual friends </span>

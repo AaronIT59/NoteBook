@@ -50,7 +50,7 @@ public class DaoImpl implements DAO{
 		try {
 			Connection conn = ConnectDB();
 			PreparedStatement pst = conn.prepareStatement("insert into tbl_profile (first_name,last_name,email_mobile,password,birthday,sex) values (?,?,?,?,?,?) ");		
-			pst.setString(1, pro.getLast_name());
+			pst.setString(1, pro.getFirst_name());
 			pst.setString(2, pro.getLast_name());
 			pst.setString(3, pro.getEmail_mobile());
 			pst.setString(4, pro.getPassword());
