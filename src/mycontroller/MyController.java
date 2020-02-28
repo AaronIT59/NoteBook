@@ -53,7 +53,10 @@ public class MyController {
 		}else if(!new util.Validate().checkPass(tpro.getPassword())) {
 			mv.addObject("status", "Password invalid");
 			mv.setViewName("register.jsp");
-		}
+		}else if (new DaoImpl().checkEmail(tpro.getEmail_mobile())) {
+			mv.addObject("status", "Email/Phone already exists , Change Email/Phone");
+			mv.setViewName("register.jsp");		
+		} 
 		
 		else {
 			if(new DaoImpl().SignIn(tpro))

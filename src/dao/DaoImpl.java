@@ -66,4 +66,24 @@ public class DaoImpl implements DAO{
 		}
 		return false;
 	}
+
+	@Override
+	public boolean checkEmail(String email) {
+		try {
+			Connection conn = ConnectDB();
+			PreparedStatement pst = conn.prepareStatement("select * from tbl_profile where email_mobile= ?");
+			pst.setString(1, email);
+			
+			if(pst.executeQuery().next())
+			{
+				return true;
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			
+		}
+		
+		return false;
+	}
 }
