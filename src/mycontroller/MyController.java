@@ -2,6 +2,7 @@ package mycontroller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,12 +14,19 @@ import entity.tbl_profile;
 @Controller
 public class MyController {
 	
+	
 	@RequestMapping(value = "/login")
 	public ModelAndView login(HttpServletRequest request,HttpServletResponse response) {
 		ModelAndView mv = new ModelAndView();
 		String a = request.getParameter("user");
 		String b = request.getParameter("pass");
-		if(new DaoImpl().checkLogin(a, b)) {
+		HttpSession session = request.getSession();
+		
+		tbl_profile pro = new DaoImpl().checklogin(a, b);
+		
+		if(pro!=null)
+		{
+			session.setAttribute("user", pro);
 			mv.setViewName("news-feed.jsp");
 		}
 		else 
@@ -69,5 +77,42 @@ public class MyController {
 		return mv;
 		
 	}
+	
+	@RequestMapping(value = "/news-feed")
+	public ModelAndView NewFeed(HttpServletRequest request,HttpServletResponse response) {
+		ModelAndView mv =new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("user")!=null)
+		{
+			mv.addObject("user");
+			mv.setViewName("news-feed.jsp");
+		}
+		
+		else {
+			mv.addObject("status","ivalid login");
+			mv.setViewName("login.jsp");
+		}
+		
+		return mv;
+	}
+	
+	@RequestMapping(value = "/profile")
+	public ModelAndView Profile(HttpServletRequest request,HttpServletResponse response) {
+		ModelAndView mv =new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session.getAttribute("user")!=null)
+		{
+			mv.addObject("user");
+			mv.setViewName("profile.jsp");
+		}
+		
+		else {
+			mv.addObject("status","ivalid login");
+			mv.setViewName("news-feed.jsp");
+		}
+		
+		return mv;
+	}
+	
 	
 }

@@ -15,5 +15,16 @@
 	<context:component-scan
 		base-package="mycontroller" />
 	<mvc:default-servlet-handler />
+	
  	<mvc:resources location="/resources/" mapping="/resources/**"></mvc:resources>
+   
+   <!--  
+ 	<bean id="viewResolver"
+		class="org.springframework.web.servlet.view.UrlBasedViewResolver">
+		<property name="viewClass"
+			value="org.springframework.web.servlet.view.JstlView" />
+		<property name="prefix" value="/views/" />
+		<property name="suffix" value="" />
+	</bean> -->
+	
 </beans>

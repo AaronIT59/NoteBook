@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 
@@ -18,14 +18,14 @@
 
 <body>
 
-    <%@include file="WEB-INF/top_nav.jspf" %>
+    <%@include file="/WEB-INF/top_nav.jspf" %>
 
     <section class="container-fluid" id="main-body">
         <div class="row no-pad">
             <div class="col-md-2 no-pad">
                 <div class="left-tool-section">
-                    <a href="">
-                        <img src="resources/img/avatar.jpg"> Ngo Dang Ha An
+                    <a href="profile.jsp">
+                        <img src="resources/img/${user.getAvata()}"> ${user.getLast_name()} ${user.getFirst_name()} 
                     </a>
                     <a href=""><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a>
                 </div>
@@ -78,7 +78,7 @@
                         <span id="post-form-close-button">x</span>
                     </div>
                     <div id="post-form-body">
-                        <img src="resources/img/avatar_post.jpg">
+                        <img src="resources/img/${user.getAvata()}" width="35px" height="35px">
                         <div id="post-form-editor" contenteditable>
 
                         </div>

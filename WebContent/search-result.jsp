@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<jsp:include page="WEB-INF/head_tag.jsp">
+<jsp:include page="/WEB-INF/head_tag.jsp">
 	<jsp:param value="Search" name="title"/>
 </jsp:include>
 

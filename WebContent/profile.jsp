@@ -1,12 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
 
-	<jsp:include page="WEB-INF/head_tag.jsp">
+	<jsp:include page="/WEB-INF/head_tag.jsp">
 			<jsp:param value="Profile" name="title"/>
 	</jsp:include>
 
 <body>
-	<%@include file="WEB-INF/top_nav.jspf"%>
+	<%@include file="/WEB-INF/top_nav.jspf"%>
    
     <section class="container-fluid" id="main-body">
         <div class="row no-pad">
@@ -14,8 +16,8 @@
                 <div class="profile-header">
                     <div class="profile-header-top">
                         <span id="profile-button-add-cover"><i class="fa fa-camera" aria-hidden="true"></i> Add Cover Photo</span>
-                        <img src="resources/img/profile.jpg">
-                        <h3>Ngô Đăng Hà An</h3>
+                        <img src="resources/img/${user.getAvata()}">
+                        <h3>${user.getLast_name()} ${user.getFirst_name()}</h3>
                         <a href="" id="profile-button-update-info">Update Info <span>1</span></a>
                         <a href="" id="profile-button-view-log">View Activity Log <span>5</span></a>
                     </div>

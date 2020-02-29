@@ -56,8 +56,8 @@ public class DaoImpl implements DAO{
 			pst.setString(4, pro.getPassword());
 			pst.setString(5, pro.getBirthday());
 			pst.setString(6, pro.getSex());	
-			pst.execute();
-			
+			pst.executeUpdate();
+			pst.close();			
 			return true;
 		
 			
@@ -86,4 +86,39 @@ public class DaoImpl implements DAO{
 		
 		return false;
 	}
+
+	@Override
+	public tbl_profile getProfile(String email, String pass) {
+		tbl_profile pro = null;
+		try {
+			Connection conn = ConnectDB();
+			PreparedStatement pst = conn.prepareStatement("select * from tbl_profile where email_mobile=? and password=?");
+			pst.setString(1, email);
+			pst.setString(2, pass);
+			ResultSet rs = pst.executeQuery();
+			if(rs.next()) {
+				pro = new tbl_profile(rs.getInt("id"), 
+						rs.getString("first_name"), 
+						rs.getString("last_name"), 
+						rs.getString("email_mobile"),
+						rs.getString("password"),
+						rs.getString("birthday"), 
+						rs.getString("sex"), 
+						rs.getString("avatar"));
+			}
+			
+			return pro;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return null;
+	}
+	
+	public tbl_profile checklogin(String email,String pass) {
+		return getProfile(email, pass);	
+	}
+	
+	
 }
