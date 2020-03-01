@@ -27,7 +27,7 @@
                     <a href="profile.jsp">
                         <img src="resources/img/${user.getAvata()}"> ${user.getLast_name()} ${user.getFirst_name()} 
                     </a>
-                    <a href=""><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a>
+                    <a href="profile.jsp"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a>
                 </div>
 
                 <div class="left-tool-section">

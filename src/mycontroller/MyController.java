@@ -1,5 +1,6 @@
 package mycontroller;
 
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -20,10 +21,8 @@ public class MyController {
 		ModelAndView mv = new ModelAndView();
 		String a = request.getParameter("user");
 		String b = request.getParameter("pass");
-		HttpSession session = request.getSession();
-		
+		HttpSession session = request.getSession();	
 		tbl_profile pro = new DaoImpl().checklogin(a, b);
-		
 		if(pro!=null)
 		{
 			session.setAttribute("user", pro);
@@ -93,6 +92,7 @@ public class MyController {
 			mv.setViewName("login.jsp");
 		}
 		
+		
 		return mv;
 	}
 	
@@ -111,6 +111,51 @@ public class MyController {
 			mv.setViewName("news-feed.jsp");
 		}
 		
+		return mv;
+	}
+	
+	@RequestMapping (value = "/signOut")
+	public ModelAndView SignOut(HttpServletRequest request,HttpServletResponse response)
+	{
+		ModelAndView mv =new ModelAndView();
+		HttpSession session = request.getSession();
+		if(session!=null)
+		{
+			session.invalidate();
+			mv.setViewName("index.jsp");
+		}
+		
+		
+		return mv;
+		
+	}
+	
+	@RequestMapping (value = "/changeProfile")
+	public ModelAndView ChangeProfile(HttpServletRequest request,HttpServletResponse response) {
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+		tbl_profile user = (tbl_profile) session.getAttribute("user");		
+		
+		tbl_profile tpro = new tbl_profile();
+		tpro.setFirst_name(request.getParameter("first-name"));
+		tpro.setLast_name(request.getParameter("last-name"));
+		tpro.setEmail_mobile(request.getParameter("mobile-or-email"));
+		tpro.setPassword(request.getParameter("user-password"));
+		tpro.setBirthday(request.getParameter("day")+"-"+request.getParameter("month")+"-"+request.getParameter("year"));
+		tpro.setSex(request.getParameter("sex"));
+			
+		if(new DaoImpl().UpdateProfile(tpro, user.getId()))
+		{
+			mv.setViewName("profile.jsp");
+			mv.addObject("status1", "Succes Update !");
+		}
+		
+		else
+		{
+			mv.setViewName("profile.jsp");
+			mv.addObject("status2", "Error Update !");
+		}
+			
 		return mv;
 	}
 	

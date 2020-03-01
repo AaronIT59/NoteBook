@@ -1,3 +1,7 @@
+<%@page import="util.StringUtil"%>
+<%@page import="com.mysql.cj.util.Util"%>
+<%@page import="entity.tbl_profile"%>
+<%@page import="org.apache.catalina.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
@@ -9,7 +13,7 @@
 
 <body>
 	<%@include file="/WEB-INF/top_nav.jspf"%>
-   
+		
     <section class="container-fluid" id="main-body">
         <div class="row no-pad">
             <div class="col-md-8 no-pad">
@@ -48,33 +52,36 @@
                             <div class="col-md-8 profile-body-content-editing">
                                 <h4>Overview</h4>
                                 <div class="overview-form">
-                                  <form action="/" method="post">
+                                
+                                  <form action="changeProfile" method="post">
+                                  			<p style="color: green;">${status1}</p>
+                                  			<p style="color: red;">${status2}</p>
                                           <label>First Name:</label>
-                                          <input required type="text" name="first-name" maxlength="30" />
+                                          <input required type="text" name="first-name" maxlength="30" value="${user.getFirst_name()}" />
 
                                           <label>Last Name:</label>
-                                          <input required type="text" name="last-name" maxlength="30" />
-
+                                          <input required type="text" name="last-name" maxlength="30" value="${user.getLast_name()}" />
+										
                                           <label>Email/Mobile:</label>
-                                          <input required type="email" name="mobile-or-email" />
-
-                                          <label>Password:</label>
-                                          <input required type="password" name="user-password" />
-
+                                          <input required type="text" name="mobile-or-email" value="${user.getEmail_mobile()}" />
+											
+										  <label>Password:</label>
+                                          <input type="text" name="user-password" value="" />	
+											
                                           <label>Sex:</label>
-                                          <input checked type="radio" name="sex" id="male"> <label class="light" for="male">Male</label>
-                                          <input type="radio" name="sex" id="female"> <label class="light" for="female">Female</label>
+                                          <input  type="radio" name="sex" value="male" id="male"> <label class="light" for="male" >Male</label>
+                                          <input  type="radio" name="sex" value="female" id="female"> <label class="light" for="female" >Female</label>
 
                                           <label style="display:block;">Birthday</label>
                                           <div class="reg-input">
-                                              <select name="day" id="days">
-                                                  <option>Day</option>
+                                              <select name="day" id="days" >
+                                                  <option value="day" >Day</option>
                                               </select>
                                               <select name="month" id="months">
-                                                  <option>Month</option>
+                                                  <option value="month" >Month</option>
                                               </select>
                                               <select name="year" id="years">
-                                                  <option>Year</option>
+                                                  <option value="year" >Year</option>
                                               </select>
                                           </div>
 
@@ -225,24 +232,46 @@
             </div>
         </div>
     </section>
+    	<%
+    		tbl_profile user = (tbl_profile)session.getAttribute("user");   	
+    		String[] birth = user.getBirthday().split("-");
+    		String d = birth[0];
+    		String m = birth[1];
+    		String y = birth[2];
+    		String s = user.getSex();
+    	%>
+
+
     <script>
         $(function() {
+        	
+        	var day = "<%= StringUtil.getString(d) %>";
+        	var month = "<%= StringUtil.getString(m) %> ";
+        	var year = "<%= StringUtil.getString(y) %> ";
+        	
             for (var i = 1; i <= 31; i++) {
-                $("#days").append("<option>" + i + "</option>");    
+            	if(i==day) $("#days").append("<option selected>" + i + "</option>"); 
+            	else $("#days").append("<option>" + i + "</option>");    
             }
             
             for (var i = 1; i <= 12; i++) {
-                $("#months").append("<option>" + i + "</option>");    
+            	if(i==month) $("#months").append("<option selected>" + i + "</option>"); 
+            	else $("#months").append("<option>" + i + "</option>");    
             }
             
             for (var i = 2016; i >= 1905; i--) {
-                $("#years").append("<option>" + i + "</option>");    
+            	if(i==year) $("#years").append("<option selected>" + i + "</option>"); 
+            	else $("#years").append("<option>" + i + "</option>");    
             }
+           
+            var selectedSex = "<%= StringUtil.getString(user.getSex()) %>";	
+            $("input[name=sex][value=" + selectedSex +"]").prop('checked',true);
+            
             var viewportHeight = $(window).height();
             $("#online-list").css("max-height", viewportHeight);
         });
     </script>
-    <script src="js/app.js"></script>
+    <script src="resources/js/app.js"></script>
 </body>
 
 </html>
