@@ -7,9 +7,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import entity.tbl_profile;
+import model.tbl_profile;
 
-public class DaoImpl implements DAO{
+public class DaoImpl {
 	
 	public Connection ConnectDB() {
 		String DB_URL = "jdbc:mysql://localhost:3306/NoteBook";
@@ -27,7 +27,6 @@ public class DaoImpl implements DAO{
 		return conn;
 	}
 
-	@Override
 	public boolean checkLogin(String u, String p) {
 		
 		try {
@@ -46,7 +45,7 @@ public class DaoImpl implements DAO{
 		return false;
 	}
 
-	@Override
+	
 	public boolean SignIn(tbl_profile pro) {
 		
 		try {
@@ -69,7 +68,7 @@ public class DaoImpl implements DAO{
 		return false;
 	}
 
-	@Override
+	
 	public boolean checkEmail(String email) {
 		try {
 			Connection conn = ConnectDB();
@@ -89,7 +88,7 @@ public class DaoImpl implements DAO{
 		return false;
 	}
 
-	@Override
+	
 	public tbl_profile getProfile(String email, String pass) {
 		tbl_profile pro = null;
 		try {
@@ -112,7 +111,7 @@ public class DaoImpl implements DAO{
 			return pro;
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("loi ko lay dc profile");
 		}
 		
 		return null;
@@ -123,16 +122,17 @@ public class DaoImpl implements DAO{
 		return getProfile(email, pass);	
 	}
 
-	@Override
-	public List<tbl_profile> getConnectFriend(tbl_profile tpro) {
-		List<tbl_profile> listf = new ArrayList<tbl_profile>();
-		tbl_profile pro = null;		
+	
+	public List<tbl_profile> getConnectFriend(int ids) {
+		List<tbl_profile> listf = new ArrayList<tbl_profile>();		
 		try {
 			Connection conn = ConnectDB();			
-			PreparedStatement pst = conn.prepareStatement("select * from tbl_profile where id = any(select friend_to from tbl_friends where me = tpro.getId())");
+			PreparedStatement pst = conn.prepareStatement("select * from tbl_profile where id = any(select friend_to from tbl_friends where me = ?)");
+			pst.setInt(1, ids);
 			ResultSet rs = pst.executeQuery();
-			if(rs.next()) {
-				pro = new tbl_profile(rs.getInt("id"), 
+			while(rs.next()) {
+				
+				tbl_profile pro = new tbl_profile(rs.getInt("id"), 
 						rs.getString("first_name"), 
 						rs.getString("last_name"), 
 						rs.getString("email_mobile"),
@@ -140,41 +140,91 @@ public class DaoImpl implements DAO{
 						rs.getString("birthday"), 
 						rs.getString("sex"), 
 						rs.getString("avatar"));
-				listf.add(pro);				
+				
+				listf.add(pro);		
 				
 			}
 			
 			return listf;
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("loi them list");
 		}
-		
-		
-		
+			
 		return null;
 	}
-
-	@Override
+	
+	public List<tbl_profile> getFriend(int ids) {
+		List<tbl_profile> listf = new ArrayList<tbl_profile>();		
+		try {
+			Connection conn = ConnectDB();			
+			PreparedStatement pst = conn.prepareStatement("select * from tbl_profile where not id = any(select friend_to from tbl_friends where me = ?)");
+			pst.setInt(1, ids);
+			ResultSet rs = pst.executeQuery();
+			while(rs.next()) {
+				
+				tbl_profile pro = new tbl_profile(rs.getInt("id"), 
+						rs.getString("first_name"), 
+						rs.getString("last_name"), 
+						rs.getString("email_mobile"),
+						rs.getString("password"),
+						rs.getString("birthday"), 
+						rs.getString("sex"), 
+						rs.getString("avatar"));
+				
+				listf.add(pro);		
+				
+			}
+			
+			return listf;
+			
+		} catch (Exception e) {
+			System.out.println("loi them list");
+		}
+			
+		return null;
+	}
+	
 	public boolean UpdateProfile(tbl_profile pro,int ids) {
 		
 		try {
 			Connection conn = ConnectDB();
-			PreparedStatement pst = conn.prepareStatement("update tbl_profile set first_name = ?,last_name = ?,email_mobile = ?,password = ?,birthday = ?,sex = ? where  id= ?");		
+			PreparedStatement pst = conn.prepareStatement("update tbl_profile set first_name = ?,last_name = ?,email_mobile = ?,password = ?,birthday = ?,sex = ?,avatar=? where  id= ?");		
 			pst.setString(1, pro.getFirst_name());
 			pst.setString(2, pro.getLast_name());
 			pst.setString(3, pro.getEmail_mobile());
 			pst.setString(4, pro.getPassword());
 			pst.setString(5, pro.getBirthday());
 			pst.setString(6, pro.getSex());
-			pst.setInt(7, ids);
+			pst.setString(7, pro.getAvatar());
+			pst.setInt(8, ids);
 			pst.executeUpdate();			
 			return true;
 
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Loi ko update profile");
 		}
 		return false;
-	}	
+	}
+
+	public int CountFriend(int ids) {
+		Connection con = ConnectDB();
+
+		try {
+			PreparedStatement pst = con.prepareStatement("select count(id) from tbl_profile where id = any(select friend_to from tbl_friends where me =?)");
+			pst.setInt(1, ids);
+			ResultSet rs =  pst.executeQuery();
+			while(rs.next()) {
+				return rs.getInt(1);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println("Loi dem");
+		}
+		
+		return 0;
+	}
+	
 	
 }

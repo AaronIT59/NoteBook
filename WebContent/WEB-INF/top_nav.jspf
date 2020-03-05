@@ -3,7 +3,7 @@
  <nav class="container-fluid" id="main-nav-user-home">
         <div class="row">
             <div class="col-md-6" id="user-tools-left">
-                <a id="main-logo">B</a>
+                <a id="main-logo">N</a>
                 <div id="search-box">
                     <input type="text" name="search-friend">
                     <button><i class="fa fa-search"></i></button>
@@ -12,7 +12,9 @@
             <div class="col-md-6" id="user-tools-right">
                 <ul>
                     <li>
-                        <a href="profile.jsp"><img src="resources/img/${user.getAvata()}" width="20px" height="20px">  ${user.getFirst_name()}</a>
+                        <a href="profile.jsp">                                          
+                        <img alt="xx" src="resources/img/${user.getAvatar()}" width="20px" height="20px">
+                          ${user.getFirst_name()}</a>
                     </li>
                     <li><a href="news-feed.jsp">Home <span>20+</span></a></li>
                     <li>

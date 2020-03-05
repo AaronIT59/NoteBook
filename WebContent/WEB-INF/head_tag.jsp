@@ -8,5 +8,6 @@
     <script src="resources/js/jquery-2.2.4.min.js"></script>
     <script src="resources/bootstrap/js/bootstrap.min.js"></script>
 
-    <link rel="stylesheet" href="resources/css/main.css">
+    <link rel="stylesheet" href="resources/css/main.css">   
+
 </head>

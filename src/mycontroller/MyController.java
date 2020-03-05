@@ -1,6 +1,9 @@
 package mycontroller;
 
 
+import java.util.List;
+
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -10,9 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import dao.DaoImpl;
-import entity.tbl_profile;
+import model.tbl_profile;
 
 @Controller
+@MultipartConfig(maxFileSize = 16000000)
 public class MyController {
 	
 	
@@ -25,6 +29,12 @@ public class MyController {
 		tbl_profile pro = new DaoImpl().checklogin(a, b);
 		if(pro!=null)
 		{
+			List<tbl_profile> list = new DaoImpl().getConnectFriend(pro.getId());
+			List<tbl_profile> list1 = new DaoImpl().getFriend(pro.getId());
+			int fr = new DaoImpl().CountFriend(pro.getId());
+			session.setAttribute("fr", fr);
+			session.setAttribute("list", list);
+			session.setAttribute("list1", list1);
 			session.setAttribute("user", pro);
 			mv.setViewName("news-feed.jsp");
 		}
@@ -76,25 +86,7 @@ public class MyController {
 		return mv;
 		
 	}
-	
-	@RequestMapping(value = "/news-feed")
-	public ModelAndView NewFeed(HttpServletRequest request,HttpServletResponse response) {
-		ModelAndView mv =new ModelAndView();
-		HttpSession session = request.getSession();
-		if(session.getAttribute("user")!=null)
-		{
-			mv.addObject("user");
-			mv.setViewName("news-feed.jsp");
-		}
-		
-		else {
-			mv.addObject("status","ivalid login");
-			mv.setViewName("login.jsp");
-		}
-		
-		
-		return mv;
-	}
+
 	
 	@RequestMapping(value = "/profile")
 	public ModelAndView Profile(HttpServletRequest request,HttpServletResponse response) {
@@ -143,11 +135,13 @@ public class MyController {
 		tpro.setPassword(request.getParameter("user-password"));
 		tpro.setBirthday(request.getParameter("day")+"-"+request.getParameter("month")+"-"+request.getParameter("year"));
 		tpro.setSex(request.getParameter("sex"));
-			
+		tpro.setAvatar(user.getAvatar());	
 		if(new DaoImpl().UpdateProfile(tpro, user.getId()))
-		{
-			mv.setViewName("profile.jsp");
+		{			
+			mv.setViewName("profile.jsp");			
 			mv.addObject("status1", "Succes Update !");
+			session.setAttribute("user", tpro);
+			
 		}
 		
 		else
@@ -155,9 +149,11 @@ public class MyController {
 			mv.setViewName("profile.jsp");
 			mv.addObject("status2", "Error Update !");
 		}
-			
+		
 		return mv;
 	}
+	
+	
 	
 	
 }

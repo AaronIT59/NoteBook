@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 
@@ -25,7 +26,7 @@
             <div class="col-md-2 no-pad">
                 <div class="left-tool-section">
                     <a href="profile.jsp">
-                        <img src="resources/img/${user.getAvata()}"> ${user.getLast_name()} ${user.getFirst_name()} 
+                        <img src="resources/img/${user.getAvatar()}">  ${user.getLast_name()} ${user.getFirst_name()}
                     </a>
                     <a href="profile.jsp"><i class="fa fa-pencil" aria-hidden="true"></i> Edit Profile</a>
                 </div>
@@ -78,7 +79,7 @@
                         <span id="post-form-close-button">x</span>
                     </div>
                     <div id="post-form-body">
-                        <img src="resources/img/${user.getAvata()}" width="35px" height="35px">
+                        <img src="resources/img/${user.getAvatar()}" width="35px" height="35px">
                         <div id="post-form-editor" contenteditable>
 
                         </div>
@@ -205,83 +206,18 @@
                         <label>PEOPLE YOU MAY KNOW</label>
                         <a href="#">See All</a>
                     </div>
-                    <div class="friend-item">
-                        <img src="resources/img/friend1.jpg">
-                        <span>
-                                <a href="#">Tráº§n XuÃ¢n KhÃ´i</a> 
-                                <span style="display:block;">123 mutual friends </span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-
-                    <div class="friend-item">
-                        <img src="resources/img/friend2.jpg">
-                        <span>
-                                <a href="#">Tráº§n VÄn á»t</a> 
-                                <span style="display:block;">Le Thi Ca Chua ...</span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-
-                    <div class="friend-item">
-                        <img src="resources/img/friend3.jpg">
-                        <span>
-                                <a href="#">LÃª XuÃ¢n Xoáº¡n</a> 
-                                <span style="display:block;">A mutual friend...</span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-
-                    <div class="friend-item">
-                        <img src="resources/img/friend2.jpg">
-                        <span>
-                                <a href="#">Tráº§n VÄn á»t</a> 
-                                <span style="display:block;">A mutual friend...</span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-
-                    <div class="friend-item">
-                        <img src="resources/img/friend3.jpg">
-                        <span>
-                                <a href="#">Tráº§n VÄn á»t</a> 
-                                <span style="display:block;">A mutual friend...</span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-
-                    <div class="friend-item">
-                        <img src="resources/img/friend1.jpg">
-                        <span>
-                                <a href="#">Tráº§n VÄn á»t</a> 
-                                <span style="display:block;">A mutual friend...</span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="friend-item">
-                        <img src="resources/img/friend3.jpg">
-                        <span>
-                                <a href="#">Tráº§n VÄn á»t</a> 
-                                <span style="display:block;">A mutual friend...</span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
-                    <div class="friend-item">
-                        <img src="resources/img/friend3.jpg">
-                        <span>
-                                <a href="#">Tráº§n VÄn á»t</a> 
-                                <span style="display:block;">A mutual friend...</span>
-                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
-                        </span>
-                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
-                    </div>
+                    <c:forEach items="${list1}" var="x">
+	                    <div class="friend-item">
+	                        <img src="resources/img/${x.getAvatar()}">
+	                        <span>
+	                                <a href="#"> ${x.getLast_name()} ${x.getFirst_name()} </a> 
+	                                <span style="display:block;">123 mutual friends </span>
+	                        <button><i class="fa fa-user-plus" aria-hidden="true"></i> Add friend</button>
+	                        </span>
+	                        <a href="#" class="ignore-friend"><i class="fa fa-times" aria-hidden="true"></i></a>
+	                    </div>
+					</c:forEach>
+                    
                 </div>
             </div>
         </div>
@@ -290,10 +226,10 @@
                 <div id="friend-detail-popup">
                     <span id="back-triange"></span>
                     <span id="front-triange"></span>
-                    <img src="resources/img/profile.jpg">
+                    <img src="resources/img/tuyen.jpg">
                     <div id="friend-detail-popup-detail">
                         <p>
-                            <a href="/">Nguyá»n Quá»c Báº£o</a>
+                            <a href="/">Tran Anh Quyet</a>
                             <span>36 followers</span>
                         </p>
                         <p>
@@ -305,111 +241,18 @@
                     </div>
                 </div>
                 <ul>
+               
+                    <c:forEach items="${list}" var="p" >
+                    
                     <li>
-                        <img src="resources/img/friend1.jpg">
-                        <span>Trung Hiáº¿u</span>
+                        <img src="resources/img/${p.getAvatar()}">
+                        <span>${p.getLast_name()} ${p.getFirst_name()}</span>
                         <span></span>
                     </li>
-                    <li>
-                        <img src="resources/img/friend2.jpg">
-                        <span>Há»ng Ngá»c</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/friend3.jpg">
-                        <span>Ca Chua</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/avatar.jpg">
-                        <span>HÃ  An</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/user-comment1.jpg">
-                        <span>Há»ng Ngá»c</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/user_comment2.jpg">
-                        <span>Háº£i SÆ¡n</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/user-comment3.jpg">
-                        <span>HÃ  Giang</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/friend1.jpg">
-                        <span>Trung Hiáº¿u</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/friend2.jpg">
-                        <span>Há»ng Ngá»c</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/friend3.jpg">
-                        <span>Ca Chua</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/avatar.jpg">
-                        <span>HÃ  An</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/user-comment1.jpg">
-                        <span>Há»ng Ngá»c</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/user_comment2.jpg">
-                        <span>Háº£i SÆ¡n</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/user-comment3.jpg">
-                        <span>HÃ  Giang</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/friend1.jpg">
-                        <span>Trung Hiáº¿u</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/friend2.jpg">
-                        <span>Há»ng Ngá»c</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/friend3.jpg">
-                        <span>Ca Chua</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/avatar.jpg">
-                        <span>HÃ  An</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/user-comment1.jpg">
-                        <span>Há»ng Ngá»c</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/user_comment2.jpg">
-                        <span>Háº£i SÆ¡n</span>
-                        <span></span>
-                    </li>
-                    <li>
-                        <img src="resources/img/user-comment3.jpg">
-                        <span>HÃ  Giang</span>
-                        <span></span>
-                    </li>
+                    
+                    </c:forEach>
+                    
+                    
                 </ul>
             </div>
         </div>

@@ -1,9 +1,10 @@
 <%@page import="util.StringUtil"%>
 <%@page import="com.mysql.cj.util.Util"%>
-<%@page import="entity.tbl_profile"%>
+<%@page import="model.tbl_profile"%>
 <%@page import="org.apache.catalina.User"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" isELIgnored="false"%>
+<%@ taglib prefix = "c" uri = "http://java.sun.com/jsp/jstl/core" %> 
 <!DOCTYPE html>
 <html>
 
@@ -19,17 +20,28 @@
             <div class="col-md-8 no-pad">
                 <div class="profile-header">
                     <div class="profile-header-top">
-                        <span id="profile-button-add-cover"><i class="fa fa-camera" aria-hidden="true"></i> Add Cover Photo</span>
-                        <img src="resources/img/${user.getAvata()}">
+                                            
+                        <form action="updateAvatar" id="frmUploadPhoto"
+                        	enctype="multipart/from-data" method="post" >
+                        	<span id="profile-button-add-cover">
+                        	<i class="fa fa-camera" aria-hidden="true"></i>
+                         	Add Cover Photo</span>
+                        	<input class="input-cover-photo" type="file" id="userCoverPhoto" 
+                        	name = "userCoverPhoto" />
+                        </form>
+                        
+                        <img
+                         src="resources/img/${user.getAvatar()}">
                         <h3>${user.getLast_name()} ${user.getFirst_name()}</h3>
-                        <a href="" id="profile-button-update-info">Update Info <span>1</span></a>
-                        <a href="" id="profile-button-view-log">View Activity Log <span>5</span></a>
+                        <!--  
+                        <a href="#" id="profile-button-update-info">Update Info <span>1</span></a>
+                        <a href="#" id="profile-button-view-log">View Activity Log <span>5</span></a>-->
                     </div>
                     <ul class="profile-header-nav">
                         <li></li>
                         <li><a href="/">Timeline</a></li>
                         <li><a href="/">About</a></li>
-                        <li><a href="/">Friends</a></li>
+                        <li><a href="/">Friends (${fr})</a></li>
                         <li><a href="/">Photos</a></li>
                         <li><a href="/">More <i class="fa fa-caret-down" aria-hidden="true"></i></a></li>
                     </ul>
@@ -122,111 +134,15 @@
             <div class="col-md-2 no-pad">
                 <div id="online-list">
                     <ul>
-                        <li>
-                            <img src="resources/img/friend1.jpg">
-                            <span>Trung Hiếu</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/friend2.jpg">
-                            <span>Hồng Ngọc</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/friend3.jpg">
-                            <span>Ca Chua</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/avatar.jpg">
-                            <span>Hà An</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/user-comment1.jpg">
-                            <span>Hồng Ngọc</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/user_comment2.jpg">
-                            <span>Hải Sơn</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/user-comment3.jpg">
-                            <span>Hà Giang</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/friend1.jpg">
-                            <span>Trung Hiếu</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/friend2.jpg">
-                            <span>Hồng Ngọc</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/friend3.jpg">
-                            <span>Ca Chua</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/avatar.jpg">
-                            <span>Hà An</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/user-comment1.jpg">
-                            <span>Hồng Ngọc</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/user_comment2.jpg">
-                            <span>Hải Sơn</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/user-comment3.jpg">
-                            <span>Hà Giang</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/friend1.jpg">
-                            <span>Trung Hiếu</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/friend2.jpg">
-                            <span>Hồng Ngọc</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/friend3.jpg">
-                            <span>Ca Chua</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/avatar.jpg">
-                            <span>Hà An</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/user-comment1.jpg">
-                            <span>Hồng Ngọc</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/user_comment2.jpg">
-                            <span>Hải Sơn</span>
-                            <span></span>
-                        </li>
-                        <li>
-                            <img src="resources/img/user-comment3.jpg">
-                            <span>Hà Giang</span>
-                            <span></span>
-                        </li>
+                        <c:forEach items="${list}" var="p" >
+                    
+		                    <li>
+		                        <img src="resources/img/${p.getAvatar()}">
+		                        <span>${p.getLast_name()} ${p.getFirst_name()}</span>
+		                        <span></span>
+		                    </li>
+		                    
+                    	</c:forEach>
                     </ul>
                 </div>
             </div>
@@ -244,6 +160,11 @@
 
     <script>
         $(function() {
+        	
+        	$('#userCoverPhoto').change(function (){
+        		
+        		$('frmUploadPhoto').submit();
+        	});
         	
         	var day = "<%= StringUtil.getString(d) %>";
         	var month = "<%= StringUtil.getString(m) %> ";

@@ -3,7 +3,6 @@
     pageEncoding="UTF-8" isELIgnored="false"%>
 <!DOCTYPE html>
 <html>
-
 <jsp:include page="/WEB-INF/head_tag.jsp">
 	<jsp:param value="Register" name="title"/>
 </jsp:include>
@@ -48,7 +47,7 @@
                         <div class="reg-input-full-name">
                             <div class="reg-input" id="first-name">
                                 <input type="text" name="first-name" placeholder="First name"
-                                 value="<%= StringUtil.getString(request.getParameter("first-name")) %>" >
+                                 value=" <%= StringUtil.getString(request.getParameter("first_name")) %>">
                                 <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
                                 <span class="error-popup">Input your first name
                                     <span></span><span></span>
@@ -102,7 +101,7 @@
                             </span>
                         </div>
                         <div class="reg-input">
-                            <input type="radio" name="sex" value="female" checked="true" ><label>Female</label>
+                            <input type="radio" name="sex" value="female" checked ><label>Female</label>
                             <input type="radio" name="sex" value="male"><label>Male</label>
                         </div>
                         <p class="help-block">
