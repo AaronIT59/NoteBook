@@ -221,41 +221,7 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-2 no-pad">
-            <div id="online-list">
-                <div id="friend-detail-popup">
-                    <span id="back-triange"></span>
-                    <span id="front-triange"></span>
-                    <img src="resources/img/tuyen.jpg">
-                    <div id="friend-detail-popup-detail">
-                        <p>
-                            <a href="/">Tran Anh Quyet</a>
-                            <span>36 followers</span>
-                        </p>
-                        <p>
-                            <i class="fa fa-user-plus" aria-hidden="true"></i> Became friends with <br><a href="/">Hien Tran and 3 others...</a>
-                        </p>
-                        <p>
-                            <i class="fa fa-user-plus" aria-hidden="true"></i> Became friends with <br><a href="/">Ca Chua and 3 others...</a>
-                        </p>
-                    </div>
-                </div>
-                <ul>
-               
-                    <c:forEach items="${list}" var="p" >
-                    
-                    <li>
-                        <img src="resources/img/${p.getAvatar()}">
-                        <span>${p.getLast_name()} ${p.getFirst_name()}</span>
-                        <span></span>
-                    </li>
-                    
-                    </c:forEach>
-                    
-                    
-                </ul>
-            </div>
-        </div>
+        <%@include file="/WEB-INF/friend-list.jspf" %>
         </div>
         <section id="chat-box">
             <div id="chat-box-header">

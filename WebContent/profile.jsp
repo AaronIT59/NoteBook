@@ -14,13 +14,13 @@
 
 <body>
 	<%@include file="/WEB-INF/top_nav.jspf"%>
-		
     <section class="container-fluid" id="main-body">
         <div class="row no-pad">
             <div class="col-md-8 no-pad">
                 <div class="profile-header">
-                    <div class="profile-header-top">
-                                            
+                	
+                    <div class="profile-header-top" style="background-image: url('resources/img/hero2.jpg'); width: 812px; height: 300px">
+                                    
                         <form action="updateAvatar" id="frmUploadPhoto"
                         	enctype="multipart/from-data" method="post" >
                         	<span id="profile-button-add-cover">
@@ -131,21 +131,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-2 no-pad">
-                <div id="online-list">
-                    <ul>
-                        <c:forEach items="${list}" var="p" >
-                    
-		                    <li>
-		                        <img src="resources/img/${p.getAvatar()}">
-		                        <span>${p.getLast_name()} ${p.getFirst_name()}</span>
-		                        <span></span>
-		                    </li>
-		                    
-                    	</c:forEach>
-                    </ul>
-                </div>
-            </div>
+           <%@include file="/WEB-INF/friend-list.jspf" %>
         </div>
     </section>
     	<%

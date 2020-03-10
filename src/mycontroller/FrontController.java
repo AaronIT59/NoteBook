@@ -1,7 +1,9 @@
 package mycontroller;
 
 
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.http.HttpServletRequest;
@@ -12,12 +14,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
+
 import dao.DaoImpl;
 import model.tbl_profile;
 
 @Controller
 @MultipartConfig(maxFileSize = 16000000)
-public class MyController {
+public class FrontController {
 	
 	
 	@RequestMapping(value = "/login")
@@ -27,6 +31,21 @@ public class MyController {
 		String b = request.getParameter("pass");
 		HttpSession session = request.getSession();	
 		tbl_profile pro = new DaoImpl().checklogin(a, b);
+		String email_mobile = request.getParameter("email_mobile");		
+		try {
+			tbl_profile prof = new DaoImpl().getProfileByEmail(email_mobile);
+			Map<String, String> options = new LinkedHashMap<>();			
+			options.put("fullName", prof.getLast_name() +" "+ prof.getFirst_name());
+			options.put("avatarf", "resources/img/" + prof.getAvatar());
+			String json = new Gson().toJson(options);
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			response.getWriter().write(json);
+		} catch (Exception e) {
+			System.out.println("error write json");
+			
+		}
+		
 		if(pro!=null)
 		{
 			List<tbl_profile> list = new DaoImpl().getConnectFriend(pro.getId());
@@ -121,6 +140,8 @@ public class MyController {
 		return mv;
 		
 	}
+	
+	
 	
 	@RequestMapping (value = "/changeProfile")
 	public ModelAndView ChangeProfile(HttpServletRequest request,HttpServletResponse response) {

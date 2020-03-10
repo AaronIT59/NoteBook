@@ -88,7 +88,7 @@ public class DaoImpl {
 		return false;
 	}
 
-	
+	//Lấy thông tin cá nhân
 	public tbl_profile getProfile(String email, String pass) {
 		tbl_profile pro = null;
 		try {
@@ -122,7 +122,7 @@ public class DaoImpl {
 		return getProfile(email, pass);	
 	}
 
-	
+	// Lấy danh sách bạn bè
 	public List<tbl_profile> getConnectFriend(int ids) {
 		List<tbl_profile> listf = new ArrayList<tbl_profile>();		
 		try {
@@ -154,6 +154,7 @@ public class DaoImpl {
 		return null;
 	}
 	
+	// Lấy danh sách những người chưa kết bạn
 	public List<tbl_profile> getFriend(int ids) {
 		List<tbl_profile> listf = new ArrayList<tbl_profile>();		
 		try {
@@ -185,6 +186,8 @@ public class DaoImpl {
 		return null;
 	}
 	
+	
+	// Cập nhật thông tin 
 	public boolean UpdateProfile(tbl_profile pro,int ids) {
 		
 		try {
@@ -207,6 +210,7 @@ public class DaoImpl {
 		return false;
 	}
 
+	// Đếm số bạn trong danh sách
 	public int CountFriend(int ids) {
 		Connection con = ConnectDB();
 
@@ -226,5 +230,32 @@ public class DaoImpl {
 		return 0;
 	}
 	
+	// Lay Profile thong qua Email
+	public tbl_profile getProfileByEmail(String email) {
+		tbl_profile pro = null;
+		try {
+			Connection conn = ConnectDB();
+			PreparedStatement pst = conn.prepareStatement("select * from tbl_profile where email_mobile=? ");
+			pst.setString(1, email);
+			ResultSet rs = pst.executeQuery();
+			if(rs.next()) {
+				pro = new tbl_profile(rs.getInt("id"), 
+						rs.getString("first_name"), 
+						rs.getString("last_name"), 
+						rs.getString("email_mobile"),
+						rs.getString("password"),
+						rs.getString("birthday"), 
+						rs.getString("sex"), 
+						rs.getString("avatar"));
+			}
+			
+			return pro;
+			
+		} catch (Exception e) {
+			System.out.println("loi ko lay dc profile");
+		}
+		
+		return null;
+	}
 	
 }
